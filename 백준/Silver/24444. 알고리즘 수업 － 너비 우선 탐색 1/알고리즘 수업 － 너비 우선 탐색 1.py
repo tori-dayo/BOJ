@@ -27,9 +27,7 @@ def bfs(v):
                 visited[i] = True
                 queue.append((i))
                 cnt += 1
-                result[i] = cnt
-                
+                result[i] = cnt           
 bfs(r)
-
 for i in range(1,n+1):
     print(result[i])
