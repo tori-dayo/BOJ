@@ -1,33 +1,26 @@
 n,m = map(int,input().split())
 array = list(map(int,input().split()))
 
-result = []
+start , end = max(array) , sum(array)
 
-def count_result(array,mid,m):
-    cnt,sum = 1,0
-
-    for i in array:
-        sum += i
-        if sum > mid:
-            cnt += 1
-            sum = i
-    if cnt > m:
-        return False
-    return True
-            
 def binary_search(array,start,end):
-    if start > end:
-        return None
+    while start <= end:
+        cnt = 1
+        result = 0
 
-    mid = (start + end) // 2
+        mid = (start + end) // 2
 
-    if count_result(array,mid,m) == True:
-        result.append(mid)
-        binary_search(array,start,mid-1)
-    else:
-        binary_search(array,mid+1,end)
-    
-        
-binary_search(array,max(array),sum(array))
+        for i in array:
+            result += i
+            if result > mid:
+                cnt += 1
+                result = i
 
-print(min(result))
+        if cnt <= m:
+            end = mid - 1
+        else:
+            start = mid + 1
+    return start
+
+binary_search(array,start,end)
+print(binary_search(array,start,end))
